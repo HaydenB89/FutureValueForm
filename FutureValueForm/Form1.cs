@@ -40,4 +40,4 @@ namespace FutureValueForm {
             txtMonthlyInvestment.Focus();
         }
     }
-}
+}//this is a note to test github
