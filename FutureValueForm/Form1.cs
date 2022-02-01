@@ -19,6 +19,15 @@ namespace FutureValueForm {
             this.Close();
         }
 
+
+        // creating a method to clear out Future Value when new data is  
+        // being typed in any of the text boxes  vvvv
+        private void ClearFutureValue(object sender, EventArgs e) 
+        {
+            txtFutureValue.Text = String.Empty;
+        }
+
+
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             decimal monthlyInvestment =
@@ -29,15 +38,23 @@ namespace FutureValueForm {
             int months = years * 12;
             decimal monthlyInterestRate = yearlyInterestRate / 12 / 100;
 
-            decimal futureValue = 0m;
-            for (int idx = 0; idx < months; idx++) 
-            {
-                futureValue = (futureValue + monthlyInvestment)
-                            * (1 + monthlyInterestRate);   
-            }
+            // this next method is a call to the main method for calculate button vvv
+            decimal futureValue = CalculateFutureValue(monthlyInvestment, months, monthlyInterestRate);
 
             txtFutureValue.Text = futureValue.ToString("c");
             txtMonthlyInvestment.Focus();
         }
+
+        private static decimal CalculateFutureValue(decimal monthlyInvestment, int months, decimal monthlyInterestRate)
+        {
+            decimal futureValue = 0m;
+            for (int idx = 0; idx < months; idx++)
+            {
+                futureValue = (futureValue + monthlyInvestment)
+                                * (1 + monthlyInterestRate);
+            }
+
+            return futureValue;
+        }
     }
-}//this is a note to test github
+}

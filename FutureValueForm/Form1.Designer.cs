@@ -78,6 +78,7 @@ namespace FutureValueForm {
             this.txtMonthlyInvestment.Name = "txtMonthlyInvestment";
             this.txtMonthlyInvestment.Size = new System.Drawing.Size(125, 27);
             this.txtMonthlyInvestment.TabIndex = 4;
+            this.txtMonthlyInvestment.TextChanged += new System.EventHandler(this.ClearFutureValue);
             // 
             // txtYearlyInterestRate
             // 
@@ -85,6 +86,7 @@ namespace FutureValueForm {
             this.txtYearlyInterestRate.Name = "txtYearlyInterestRate";
             this.txtYearlyInterestRate.Size = new System.Drawing.Size(125, 27);
             this.txtYearlyInterestRate.TabIndex = 5;
+            this.txtYearlyInterestRate.TextChanged += new System.EventHandler(this.ClearFutureValue);
             // 
             // txtNumberOfYears
             // 
@@ -92,6 +94,7 @@ namespace FutureValueForm {
             this.txtNumberOfYears.Name = "txtNumberOfYears";
             this.txtNumberOfYears.Size = new System.Drawing.Size(125, 27);
             this.txtNumberOfYears.TabIndex = 6;
+            this.txtNumberOfYears.TextChanged += new System.EventHandler(this.ClearFutureValue);
             // 
             // txtFutureValue
             // 
