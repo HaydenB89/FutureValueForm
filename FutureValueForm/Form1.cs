@@ -30,18 +30,41 @@ namespace FutureValueForm {
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            decimal monthlyInvestment = Convert.ToDecimal(txtMonthlyInvestment.Text);
-            decimal yearlyInterestRate = Convert.ToDecimal(txtYearlyInterestRate.Text);
-            int years = Convert.ToInt32(txtNumberOfYears.Text);
+            //adding exceptions w/try and catch
+            try
+            {
 
-            int months = years * 12;
-            decimal monthlyInterestRate = yearlyInterestRate / 12 / 100;
+                decimal monthlyInvestment = Convert.ToDecimal(txtMonthlyInvestment.Text);
+                decimal yearlyInterestRate = Convert.ToDecimal(txtYearlyInterestRate.Text);
+                int years = Convert.ToInt32(txtNumberOfYears.Text);
 
-            // this next method is a call to the main method for calculate button vvv
-            decimal futureValue = CalculateFutureValue(monthlyInvestment, months, monthlyInterestRate);
+                int months = years * 12;
+                decimal monthlyInterestRate = yearlyInterestRate / 12 / 100;
 
-            txtFutureValue.Text = futureValue.ToString("c");
-            txtMonthlyInvestment.Focus();
+                // this next method is a call to the main method for calculate button vvv
+                decimal futureValue = CalculateFutureValue(monthlyInvestment, months, monthlyInterestRate);
+
+                txtFutureValue.Text = futureValue.ToString("c");
+                txtMonthlyInvestment.Focus();
+            }
+            catch(FormatException)
+            {
+                MessageBox.Show(
+                    "Invalid numeric format. Please check all values.",
+                    "Entry Error");
+            }
+            catch(OverflowException)
+            {
+                MessageBox.Show(
+                    "Overflow error. Please enter smaller values.",
+                    "Entry Error");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    ex.GetType().ToString());
+            }
         }
 
         private static decimal CalculateFutureValue(decimal monthlyInvestment, int months, decimal monthlyInterestRate)
