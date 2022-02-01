@@ -34,7 +34,23 @@ namespace FutureValueForm {
             try
             {
 
+                string message = IsNotBlank(txtMonthlyInvestment.Text, "Monthly Investment");
+                message += IsNotBlank(txtYearlyInterestRate.Text, "Interest Rate");
+                message += IsNotBlank(txtNumberOfYears.Text, "Years");
+
                 decimal monthlyInvestment = Convert.ToDecimal(txtMonthlyInvestment.Text);
+                if (monthlyInvestment <= 0 || monthlyInvestment >= 10000)
+                {
+                    message += "Monthly Investment must be between 1 and 9999";
+                }
+
+                if (message != string.Empty)
+                {
+                    MessageBox.Show(message, "Entry Error");
+                    return;
+                }
+
+
                 decimal yearlyInterestRate = Convert.ToDecimal(txtYearlyInterestRate.Text);
                 int years = Convert.ToInt32(txtNumberOfYears.Text);
 
@@ -77,6 +93,15 @@ namespace FutureValueForm {
             }
 
             return futureValue;
+        }
+
+        private string IsNotBlank(string value, string name)
+        {
+            if(value == string.Empty)
+            {
+                return $"{name} is required!\n";
+            }
+            return string.Empty;
         }
     }
 }
